@@ -4,6 +4,12 @@
 
 <h1>Todos</h1>
 
+<%= form_with url: todos_path, method: :get do %>
+  <%= label_tag :category, "Filter by category" %>
+  <%= select_tag :category, options_for_select(category_filter_options, @selected_category) %>
+  <%= submit_tag "Filter" %>
+<% end %>
+
 <div id="todos">
   <% @todos.each do |todo| %>
     <%= render todo %>

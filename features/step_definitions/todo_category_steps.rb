@@ -1,0 +1,26 @@
+Given("the following todos exist:") do |table|
+  table.hashes.each do |row|
+    Todo.create!(description: row["description"], category: row["category"])
+  end
+end
+
+When("I visit the todos page") do
+  visit todos_path
+end
+
+When("I filter todos by {string}") do |category|
+  select category, from: "category"
+  click_button "Filter"
+end
+
+Then("I should see {string}") do |text|
+  expect(page).to have_content(text)
+end
+
+Then("I should not see {string}") do |text|
+  expect(page).not_to have_content(text)
+end
+
+Then("I should see no todos") do
+  expect(page).to have_css("#todos", text: /\A\s*\z/)
+end

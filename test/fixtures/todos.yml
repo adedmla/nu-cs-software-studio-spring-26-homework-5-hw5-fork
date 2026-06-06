@@ -2,6 +2,8 @@
 
 one:
   description: MyString
+  category: personal
 
 two:
   description: MyString
+  category: personal
